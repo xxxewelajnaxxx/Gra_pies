@@ -1,0 +1,69 @@
+
+
+public class Pies {
+	//stan obiektu 
+	private String rasa; // private - żeby inne klasy nie miały dostępu do obiektu
+	private String imie; // jeżeli nie dodamy wartości, zostaną przypisane domyślne, null/false
+	private double masa = 2;
+	private boolean najedzony;
+	private boolean zadowolony;
+	private boolean pelny;
+// konstruktor ma identyczną nazwę jak klasa, jest to metoda w której nie określamy typu danych zwracanych
+	public Pies(String imie, String rasa) { // każdy obiekt będzie miał imię i rasę 
+		this.imie = imie; //ten obiekt odwołuje się do atrybutu przekazanego w parametrze atrybut z lewej
+		this.rasa = rasa;
+	}
+		
+	public void jedz(double ilosc) { // ingeruje w stan obiektu, wywołanie na konkretnym obiekcie będzie miało inny efekt
+		najedzony = true;
+		zadowolony = true;
+		if (ilosc > 1) {
+			pelny = true;
+			if(ilosc > 2) {
+				zadowolony = false;
+				tyj(1);
+			}
+		}
+		
+	}
+
+	private void tyj(int i) {
+		masa+=i;
+	}
+	
+	public void wyjdzNaSpacer() {
+		zadowolony = true;
+		pelny = false;
+		najedzony = false;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Mam na imię ");
+		builder.append(imie);
+		builder.append(", jestem psem rasy  ");
+		builder.append(rasa);
+		builder.append(" i ważę ");
+		builder.append(masa);
+		builder.append(" kg. Jestem ");
+		if (zadowolony) {
+			builder.append("zadowolony");
+		}else {
+			builder.append("smutny");
+		}
+		if (najedzony) {
+			builder.append(" najedzony");
+		}else {
+			builder.append(" głodny");
+		}
+		if (pelny) {
+			builder.append(" i muszę wyjść na spacer");
+		}
+        String wiadomosc = builder.toString();
+		return wiadomosc;
+	}
+	
+	
+	
+	
+}
